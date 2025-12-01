@@ -32,8 +32,8 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
         scrolled 
-          ? 'bg-white/90 backdrop-blur-xl border-slate-200/60 shadow-sm py-3' 
-          : 'bg-white/60 backdrop-blur-lg border-transparent py-5'
+          ? 'bg-white/80 backdrop-blur-2xl border-slate-200/50 shadow-[0_10px_30px_rgba(0,0,0,0.03)] py-3' 
+          : 'bg-transparent border-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-600 hover:text-indigo-600 focus:outline-none p-2 rounded-xl hover:bg-slate-100 transition-colors"
+              className="text-slate-600 hover:text-indigo-600 focus:outline-none p-2.5 rounded-xl hover:bg-slate-100/50 transition-colors"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -54,8 +54,8 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
             className="flex-shrink-0 flex items-center cursor-pointer group gap-3 select-none"
             onClick={() => setPage('home')}
           >
-            <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-110">
-              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-md">
+            <div className="relative w-11 h-11 transition-transform duration-500 group-hover:scale-110">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-lg">
                 <defs>
                   <linearGradient id="logo_gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
                     <stop stopColor="#4F46E5" />
@@ -70,19 +70,19 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
             </div>
             
             <div className="flex flex-col justify-center">
-              <span className="text-2xl font-black tracking-tight font-latin leading-none flex items-center text-slate-900">
+              <span className="text-2xl font-black tracking-tight font-latin leading-none flex items-center text-slate-900 group-hover:text-indigo-600 transition-colors">
                 ccard<span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-cyan-500">.ir</span>
               </span>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center bg-slate-100/50 backdrop-blur-sm rounded-full px-1.5 py-1.5 border border-slate-200/50">
+          <div className="hidden md:flex items-center bg-white/60 backdrop-blur-md rounded-full px-1.5 py-1.5 border border-white/50 shadow-sm">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setPage(item.id)}
-                className={`relative px-5 py-2 text-sm font-bold rounded-full transition-all duration-300 ${
+                className={`relative px-6 py-2.5 text-sm font-bold rounded-full transition-all duration-300 ${
                   activePage === item.id 
                     ? 'text-indigo-600 bg-white shadow-sm ring-1 ring-slate-100' 
                     : 'text-slate-500 hover:text-slate-900 hover:bg-white/50'
@@ -99,10 +99,10 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
               href="https://wa.me/989123772681"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center gap-2 bg-slate-900 text-white pl-5 pr-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-600 transition-all duration-300 shadow-lg hover:shadow-indigo-500/30 overflow-hidden"
+              className="group relative flex items-center gap-2 bg-slate-900 text-white pl-6 pr-7 py-3 rounded-full text-sm font-bold hover:bg-indigo-600 transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-indigo-500/30 overflow-hidden"
             >
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]"></div>
               <span>مشاوره آنلاین</span>
             </a>
           </div>
@@ -111,18 +111,18 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`md:hidden fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`md:hidden fixed inset-0 z-40 bg-slate-900/30 backdrop-blur-sm transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Mobile Menu Panel */}
       <div 
-        className={`md:hidden fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white z-50 shadow-2xl transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`md:hidden fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white z-50 shadow-2xl transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1) ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex flex-col h-full">
-          <div className="p-6 flex justify-between items-center border-b border-slate-100">
+          <div className="p-6 flex justify-between items-center border-b border-slate-50">
             <span className="font-black text-xl text-slate-900 font-latin">Menu</span>
-            <button onClick={() => setIsOpen(false)} className="p-2 text-slate-400 hover:text-slate-900 rounded-lg bg-slate-50">
+            <button onClick={() => setIsOpen(false)} className="p-2 text-slate-400 hover:text-slate-900 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
                <X className="h-5 w-5" />
             </button>
           </div>
@@ -134,7 +134,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
                   setPage(item.id);
                   setIsOpen(false);
                 }}
-                className={`flex w-full items-center justify-between px-4 py-4 rounded-xl text-base font-bold transition-all ${
+                className={`flex w-full items-center justify-between px-5 py-4 rounded-2xl text-base font-bold transition-all ${
                   activePage === item.id
                     ? 'bg-indigo-50 text-indigo-700'
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
@@ -145,7 +145,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
               </button>
             ))}
           </div>
-          <div className="p-6 border-t border-slate-100 bg-slate-50">
+          <div className="p-6 border-t border-slate-50 bg-slate-50/50">
             <a
                href="https://wa.me/989123772681"
                target="_blank"

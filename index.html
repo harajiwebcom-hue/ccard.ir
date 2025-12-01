@@ -29,7 +29,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&family=Satoshi:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -39,7 +39,7 @@
           extend: {
             fontFamily: {
               sans: ['Vazirmatn', 'sans-serif'],
-              latin: ['Satoshi', 'sans-serif'],
+              latin: ['Outfit', 'sans-serif'],
             },
             colors: {
               brand: {
@@ -59,6 +59,7 @@
               'blob': 'blob 7s infinite',
               'shimmer': 'shimmer 1.5s infinite',
               'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+              'float': 'float 6s ease-in-out infinite',
             },
             keyframes: {
               blob: {
@@ -73,6 +74,10 @@
               fadeInUp: {
                 '0%': { opacity: '0', transform: 'translateY(20px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
               }
             }
           }
@@ -86,9 +91,14 @@
         overflow-x: hidden;
       }
       .glass-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .text-gradient-gold {
+        background: linear-gradient(135deg, #B78628 0%, #FCC201 50%, #B78628 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       /* Custom Scrollbar */
       ::-webkit-scrollbar {

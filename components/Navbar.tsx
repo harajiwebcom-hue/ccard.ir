@@ -32,12 +32,12 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
         scrolled 
-          ? 'bg-white/80 backdrop-blur-2xl border-slate-200/60 shadow-sm py-2' 
-          : 'bg-white/40 backdrop-blur-md border-transparent py-4'
+          ? 'bg-white/90 backdrop-blur-xl border-slate-200/60 shadow-sm py-3' 
+          : 'bg-white/60 backdrop-blur-lg border-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-14">
           
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
@@ -54,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
             className="flex-shrink-0 flex items-center cursor-pointer group gap-3 select-none"
             onClick={() => setPage('home')}
           >
-            <div className="relative w-11 h-11 transition-transform duration-300 group-hover:scale-110">
+            <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-110">
               <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-md">
                 <defs>
                   <linearGradient id="logo_gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
@@ -62,33 +62,30 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
                     <stop offset="1" stopColor="#0EA5E9" />
                   </linearGradient>
                 </defs>
-                <rect width="40" height="40" rx="14" fill="url(#logo_gradient)" />
+                <rect width="40" height="40" rx="12" fill="url(#logo_gradient)" />
                 <path d="M28 12H12C9.79086 12 8 13.7909 8 16V24C8 26.2091 9.79086 28 12 28H28" stroke="white" strokeWidth="3" strokeLinecap="round"/>
                 <circle cx="28" cy="20" r="2.5" fill="white" />
                 <path d="M13 20H19" stroke="white" strokeWidth="3" strokeLinecap="round"/>
               </svg>
             </div>
             
-            <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tighter font-latin leading-none flex items-center gap-0.5 text-slate-800">
+            <div className="flex flex-col justify-center">
+              <span className="text-2xl font-black tracking-tight font-latin leading-none flex items-center text-slate-900">
                 ccard<span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-cyan-500">.ir</span>
-              </span>
-              <span className="text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase mt-0.5 ml-0.5">
-                Premium Services
               </span>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center bg-slate-50/80 rounded-full px-1.5 py-1.5 border border-slate-200/50 shadow-inner">
+          <div className="hidden md:flex items-center bg-slate-100/50 backdrop-blur-sm rounded-full px-1.5 py-1.5 border border-slate-200/50">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setPage(item.id)}
-                className={`relative px-6 py-2 text-sm font-bold rounded-full transition-all duration-300 ${
+                className={`relative px-5 py-2 text-sm font-bold rounded-full transition-all duration-300 ${
                   activePage === item.id 
-                    ? 'text-indigo-600 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)]' 
-                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200/50'
+                    ? 'text-indigo-600 bg-white shadow-sm ring-1 ring-slate-100' 
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-white/50'
                 }`}
               >
                 {item.label}
@@ -102,10 +99,10 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
               href="https://wa.me/989123772681"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center gap-2 bg-slate-900 text-white pl-4 pr-5 py-2.5 rounded-xl text-sm font-bold hover:bg-indigo-600 transition-all duration-300 shadow-md hover:shadow-indigo-500/30 overflow-hidden"
+              className="group relative flex items-center gap-2 bg-slate-900 text-white pl-5 pr-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-600 transition-all duration-300 shadow-lg hover:shadow-indigo-500/30 overflow-hidden"
             >
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
               <span>مشاوره آنلاین</span>
             </a>
           </div>
@@ -120,16 +117,16 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
 
       {/* Mobile Menu Panel */}
       <div 
-        className={`md:hidden fixed top-0 right-0 bottom-0 w-3/4 max-w-sm bg-white z-50 shadow-2xl transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`md:hidden fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white z-50 shadow-2xl transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex flex-col h-full">
-          <div className="p-5 flex justify-between items-center border-b border-slate-100">
+          <div className="p-6 flex justify-between items-center border-b border-slate-100">
             <span className="font-black text-xl text-slate-900 font-latin">Menu</span>
             <button onClick={() => setIsOpen(false)} className="p-2 text-slate-400 hover:text-slate-900 rounded-lg bg-slate-50">
                <X className="h-5 w-5" />
             </button>
           </div>
-          <div className="p-4 space-y-2 flex-1 overflow-y-auto">
+          <div className="p-4 space-y-1 flex-1 overflow-y-auto">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -139,7 +136,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
                 }}
                 className={`flex w-full items-center justify-between px-4 py-4 rounded-xl text-base font-bold transition-all ${
                   activePage === item.id
-                    ? 'bg-indigo-50 text-indigo-700 shadow-sm'
+                    ? 'bg-indigo-50 text-indigo-700'
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                 }`}
               >
@@ -148,7 +145,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
               </button>
             ))}
           </div>
-          <div className="p-5 border-t border-slate-100 bg-slate-50">
+          <div className="p-6 border-t border-slate-100 bg-slate-50">
             <a
                href="https://wa.me/989123772681"
                target="_blank"

@@ -441,7 +441,7 @@ const BlogPage = () => {
     <div className="pt-24 pb-20 px-4 max-w-7xl mx-auto">
       <div className="text-center mb-16">
         <span className="text-indigo-600 font-bold bg-indigo-50 px-4 py-1 rounded-full text-sm">وبلاگ و مقالات</span>
-        <h1 className="text-4xl font-black text-slate-900 mt-4 mb-4">تازه‌ترین دانستنی‌های تجاری</h1>
+        <h1 className="text-4xl font-black mt-4 mb-4 text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">تازه‌ترین دانستنی‌های تجاری</h1>
         <p className="text-slate-500 max-w-2xl mx-auto">راهنمای جامع خدمات ارزی، مهاجرتی و تکنولوژی برای ایرانیان</p>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
@@ -471,7 +471,7 @@ const AboutPage = () => {
   return (
     <div className="pt-24 pb-20 px-4 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-black text-slate-900 mb-6">درباره تیم ccard.ir</h1>
+        <h1 className="text-4xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-indigo-800 to-slate-900">درباره تیم ccard.ir</h1>
         <p className="text-slate-500 text-lg max-w-3xl mx-auto leading-relaxed">
           ما ترکیبی از تجربه بازرگانی و تخصص تکنولوژی هستیم. هدف ما ایجاد پلی مطمئن و سریع برای ایرانیان جهت دسترسی به خدمات جهانی است.
         </p>
@@ -542,9 +542,9 @@ const TestimonialsSection = () => {
   ];
   return (
     <section className="py-20 px-4 max-w-7xl mx-auto">
-       <div className="text-center mb-12"><h2 className="text-3xl font-black text-slate-900">تجربه مشتریان</h2></div>
+       <div className="text-center mb-12"><h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600">تجربه مشتریان</h2></div>
        <div className="grid md:grid-cols-3 gap-8">
-         {reviews.map((r,i)=><div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100"><p className="text-slate-600 text-sm mb-6 leading-7">"{r.text}"</p><div className="font-bold text-slate-900">{r.name}</div><div className="text-xs text-slate-400">{r.role}</div></div>)}
+         {reviews.map((r,i)=><div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"><p className="text-slate-600 text-sm mb-6 leading-7">"{r.text}"</p><div className="font-bold text-slate-900">{r.name}</div><div className="text-xs text-slate-400">{r.role}</div></div>)}
        </div>
     </section>
   );
@@ -553,24 +553,27 @@ const TestimonialsSection = () => {
 // --- AI Chat Widget ---
 const AIChatWidget = () => {
   const [open, setOpen] = useState(false);
-  const [msg, setMsg] = useState([{r:'ai',t:'سلام! 👋 من دستیار هوشمند ccard هستم. چطور می‌تونم کمکتون کنم؟'}]);
+  const [msg, setMsg] = useState([{id: 0, r:'ai',t:'سلام! 👋 من دستیار هوشمند ccard هستم. چطور می‌تونم کمکتون کنم؟'}]);
   const opts = ['خرید اکانت AI', 'ثبت نام آزمون', 'حواله ارزی', 'مشاوره'];
+  
   const handle = (t:string) => {
-     setMsg(p=>[...p,{r:'u',t}]);
+     const nextId = msg.length;
+     setMsg(p=>[...p,{id: nextId, r:'u',t}]);
      setTimeout(()=>{
         let r = 'لطفا در واتساپ پیام دهید تا همکارانم راهنمایی کنند.';
         if(t.includes('AI')) r='برای خرید اکانت هوش مصنوعی از بخش خدمات اقدام کنید. تحویل فوری است! 🚀';
         if(t.includes('حواله')) r='انجام حواله به زراعت و ایش بانک با بهترین نرخ روز انجام می‌شود.';
-        setMsg(p=>[...p,{r:'ai',t:r}]);
+        setMsg(p=>[...p,{id: nextId+1, r:'ai',t:r}]);
      }, 600);
   };
+
   return (
     <div className="fixed bottom-6 right-6 z-40">
-       {!open && <button onClick={()=>setOpen(true)} className="bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:scale-110 transition"><Bot className="h-6 w-6"/></button>}
+       {!open && <button onClick={()=>setOpen(true)} className="bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:scale-110 transition hover:shadow-indigo-500/30"><Bot className="h-6 w-6"/></button>}
        {open && <div className="bg-white rounded-2xl shadow-2xl w-80 border border-slate-200 overflow-hidden animate-fade-in-up">
           <div className="bg-indigo-600 p-4 text-white flex justify-between"><span className="font-bold">دستیار هوشمند</span><button onClick={()=>setOpen(false)}><X className="h-5 w-5"/></button></div>
-          <div className="h-64 overflow-y-auto p-4 space-y-3 bg-slate-50">{msg.map((m,i)=><div key={i} className={`p-2 text-sm rounded-xl max-w-[85%] ${m.r==='ai'?'bg-white border':'bg-indigo-600 text-white self-end'}`}>{m.t}</div>)}</div>
-          <div className="p-2 bg-white flex flex-wrap gap-2 justify-center border-t">{opts.map((o,i)=><button key={i} onClick={()=>handle(o)} className="text-xs bg-indigo-50 text-indigo-700 px-2 py-1 rounded">{o}</button>)}</div>
+          <div className="h-64 overflow-y-auto p-4 space-y-3 bg-slate-50">{msg.map((m)=><div key={m.id} className={`p-2 text-sm rounded-xl max-w-[85%] ${m.r==='ai'?'bg-white border text-slate-700':'bg-indigo-600 text-white self-end'}`}>{m.t}</div>)}</div>
+          <div className="p-2 bg-white flex flex-wrap gap-2 justify-center border-t">{opts.map((o,i)=><button key={i} onClick={()=>handle(o)} className="text-xs bg-indigo-50 text-indigo-700 px-2 py-1 rounded hover:bg-indigo-100 transition">{o}</button>)}</div>
        </div>}
     </div>
   );
@@ -597,7 +600,7 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 pb-24">
             <div className="text-center mb-16">
               <span className="text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-full text-xs tracking-wider font-latin uppercase">Premium Services</span>
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mt-4 mb-4">خدمات متمایز ما</h2>
+              <h2 className="text-3xl md:text-4xl font-black mt-4 mb-4 text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700">خدمات متمایز ما</h2>
               <p className="text-slate-500 max-w-2xl mx-auto text-lg">ارائه راهکارهای جامع مالی، تحصیلی و دیجیتال با بالاترین استاندارد</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -625,7 +628,7 @@ function App() {
 
       {page === 'services' && (
         <div className="pt-24 pb-12 px-4 max-w-7xl mx-auto">
-          <h1 className="text-3xl font-black text-center mb-12">لیست کامل خدمات</h1>
+          <h1 className="text-3xl font-black text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700">لیست کامل خدمات</h1>
           <div className="grid md:grid-cols-3 gap-6">
             {servicesData.map(s => (
                <div key={s.id} onClick={()=>handleServiceClick(s)} className="bg-white p-6 rounded-3xl border border-slate-100 hover:shadow-lg cursor-pointer transition-all">
@@ -644,12 +647,12 @@ function App() {
       
       {page === 'contact' && (
         <div className="pt-24 pb-12 px-4 max-w-4xl mx-auto text-center">
-           <h1 className="text-3xl font-black mb-8">تماس با ما</h1>
+           <h1 className="text-3xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700">تماس با ما</h1>
            <div className="bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100">
               <p className="text-lg text-slate-600 mb-8">برای دریافت مشاوره رایگان همین حالا با ما تماس بگیرید.</p>
               <div className="flex flex-col md:flex-row justify-center gap-6">
-                 <a href="https://wa.me/989123772681" target="_blank" className="flex items-center justify-center gap-2 bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition"><Phone className="h-5 w-5"/> <span dir="ltr">0912 377 2681</span></a>
-                 <a href="https://wa.me/905550007062" target="_blank" className="flex items-center justify-center gap-2 bg-teal-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-700 transition"><Phone className="h-5 w-5"/> <span dir="ltr">+90 555 000 70 62</span></a>
+                 <a href="https://wa.me/989123772681" target="_blank" className="flex items-center justify-center gap-2 bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200"><Phone className="h-5 w-5"/> <span dir="ltr">0912 377 2681</span></a>
+                 <a href="https://wa.me/905550007062" target="_blank" className="flex items-center justify-center gap-2 bg-teal-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-700 transition shadow-lg shadow-teal-200"><Phone className="h-5 w-5"/> <span dir="ltr">+90 555 000 70 62</span></a>
               </div>
            </div>
         </div>

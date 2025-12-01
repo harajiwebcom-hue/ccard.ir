@@ -16,7 +16,9 @@ const Footer: React.FC = () => {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-600 to-blue-500 flex items-center justify-center text-white shadow-indigo-200 shadow-lg">
                 <span className="font-black font-latin text-xs">C</span>
               </div>
-              <h3 className="text-2xl font-black text-slate-900 font-latin tracking-tight">ccard.ir</h3>
+              <h3 className="text-2xl font-black font-latin tracking-tight text-slate-900">
+                ccard<span className="text-indigo-600">.ir</span>
+              </h3>
             </div>
             <p className="text-slate-500 text-sm leading-loose text-justify">
               سی کارت؛ پیشرو در ارائه خدمات پرداخت بین‌المللی، خرید اکانت‌های هوش مصنوعی و خدمات بازرگانی ایران و ترکیه. <br/>
@@ -26,7 +28,7 @@ const Footer: React.FC = () => {
               <a href="#" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-600 hover:text-white hover:border-transparent transition-all shadow-sm">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://t.me/989123772681" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#229ED9] hover:text-white hover:border-transparent transition-all shadow-sm">
+              <a href="https://t.me/+989123772681" target="_blank" className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#229ED9] hover:text-white hover:border-transparent transition-all shadow-sm">
                 <Send className="h-5 w-5 pr-0.5 pt-0.5" />
               </a>
             </div>

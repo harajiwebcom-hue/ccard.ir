@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, MessageCircle, ChevronDown } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import { PageView } from '../types';
 
 interface NavbarProps {
@@ -70,8 +70,8 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, setPage }) => {
             </div>
             
             <div className="flex flex-col">
-              <span className="text-2xl font-black text-slate-800 tracking-tighter font-latin leading-none flex items-center gap-0.5">
-                ccard<span className="text-indigo-600">.ir</span>
+              <span className="text-2xl font-black tracking-tighter font-latin leading-none flex items-center gap-0.5 text-slate-800">
+                ccard<span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-cyan-500">.ir</span>
               </span>
               <span className="text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase mt-0.5 ml-0.5">
                 Premium Services
